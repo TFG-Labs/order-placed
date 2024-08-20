@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
+import { useRuntime } from 'vtex.render-runtime'
 
 import { useOrderGroup } from './components/OrderGroupContext'
 import { FurnitureNote } from './FurnitureNote'
@@ -18,6 +19,8 @@ const ConfirmationMessage: FC = () => {
   const orderGroup = useOrderGroup()
   const [isApp, setIsApp] = useState(false)
 
+  const { account } = useRuntime()
+
   useEffect(() => {
     const isAppCookie = getCookie('is_app')
     setIsApp(isAppCookie === 'true')
@@ -28,9 +31,8 @@ const ConfirmationMessage: FC = () => {
       return
     }
 
-    const redirectUrl = window.location.hostname.includes('staging')
-      ? appHomeStaging
-      : appHomeProd
+    const redirectUrl =
+      account === 'thefoschiniqa' ? appHomeStaging : appHomeProd
     window.location.replace(redirectUrl)
   }
 
