@@ -4911,6 +4911,10 @@ test-exclude@^5.2.3:
   version "1.9.6"
   resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.6/public/@types/thefoschini.order-details#faa5c63e6f0b4303eac80d93d44356db554e850d"
 
+"thefoschiniqa.order-placed@http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.12/public/@types/thefoschiniqa.order-placed":
+  version "2.15.12"
+  resolved "http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.12/public/@types/thefoschiniqa.order-placed#0f7c733b322fcab547b9a326b46ad519fda6b57c"
+
 throat@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-4.1.0.tgz#89037cbc92c56ab18926e6ba4cbb200e15672a6a"
