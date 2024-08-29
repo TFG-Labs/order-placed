@@ -5165,10 +5165,6 @@ verror@1.10.0:
   version "0.4.2"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.responsive-values@0.4.2/public/@types/vtex.responsive-values#ba7b7a888e931be81d64e8348d99bd6310385ac9"
 
-"vtex.shipping-estimate-translator@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.shipping-estimate-translator@2.3.0/public/@types/vtex.shipping-estimate-translator":
-  version "2.3.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.shipping-estimate-translator@2.3.0/public/@types/vtex.shipping-estimate-translator#47cd5baf775e33d3c623c56bbe223acca703faf7"
-
 "vtex.store-resources@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.98.0/public/@types/vtex.store-resources":
   version "0.98.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.98.0/public/@types/vtex.store-resources#24ee6090a82f3e15d70bab403058a6cd209546d2"
