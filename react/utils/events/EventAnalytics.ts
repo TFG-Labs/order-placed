@@ -112,8 +112,6 @@ class EventAnalytics {
       events: eventsToSend,
     })
 
-    console.info({ webData })
-
     // For App, there must be an app instance id
     if (this.isApp && !cookieData.appInstanceId) {
       console.warn('📱 Mobile Analytics: No app instance id found')
