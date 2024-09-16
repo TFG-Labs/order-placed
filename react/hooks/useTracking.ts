@@ -8,9 +8,11 @@ import { pushPayEvent } from '../utils/events'
 const useTracking = ({
   event = 'purchase',
   orderTotal,
+  orderId,
 }: {
   event?: string
   orderTotal?: number
+  orderId?: string
 }) => {
   const runtime = useRuntime()
   const { account } = runtime
@@ -20,6 +22,7 @@ const useTracking = ({
       {
         event,
         value: orderTotal ? orderTotal / 100 : 0,
+        transaction_id: orderId ?? '',
       },
       account
     )
