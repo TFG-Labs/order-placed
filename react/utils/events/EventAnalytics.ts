@@ -86,11 +86,13 @@ class EventAnalytics {
     // Wait for both clientId and sessionId to be retrieved
     await Promise.all([clientIdPromise, sessionIdPromise])
 
+    const isBashPay = document?.cookie.includes('bashpaybeta=true')
+
     return {
       platform: 'Web',
       clientId: this.clientId,
       sessionId: this.sessionId,
-      feature_flag_parameters: ['is_bash_pay'],
+      feature_flag_parameters: [isBashPay ? 'bashpaybeta' : ''],
     }
   }
 
