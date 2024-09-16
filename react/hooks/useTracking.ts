@@ -25,7 +25,7 @@ const useTracking = ({
         event,
         value: orderTotal ? orderTotal / 100 : 0,
         transaction_id: orderId ?? '',
-        shipping: shippingFee,
+        shipping: shippingFee ? shippingFee / 100 : 0,
       },
       account
     )
