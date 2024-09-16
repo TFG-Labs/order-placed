@@ -20,7 +20,12 @@ const CSS_HANDLES = [
 const OrderTotal: FC = () => {
   const { items, totals, value: totalValue, orderId } = useOrder()
   const handles = useCssHandles(CSS_HANDLES)
-  useTracking({ orderTotal: totalValue || 0, orderId })
+  // TODO
+  const shippingFee =
+    totals.find((total) => total.id === 'Shipping')?.value ?? 0
+  // coupon: "SUMMER_SALE", // get Voucher code.
+
+  useTracking({ orderTotal: totalValue || 0, orderId, shippingFee })
 
   const numItems = items.reduce((acc, item) => {
     if (item.parentItemIndex === null) {
