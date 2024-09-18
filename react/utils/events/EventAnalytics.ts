@@ -23,6 +23,8 @@ class EventAnalytics {
     this.retries = 0
     this.maxRetries = maxRetries
     this.isApp = getCookieValue('is_app') === 'true'
+    this.sessionId = getCookieValue('session_id')
+    this.clientId = getCookieValue('client_id')
 
     // Start the interval to periodically send the buffered events
     setInterval(() => this.flush(), this.flushInterval)
