@@ -76,7 +76,7 @@ class EventAnalytics {
       platform: 'Web',
       clientId: this.clientId,
       sessionId: this.sessionId,
-      feature_flag_parameters: [isBashPay ? 'bashpaybeta' : ''],
+      feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
     }
     
     const clientIdPromise = new Promise<void>((resolve) => {
