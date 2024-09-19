@@ -4,7 +4,9 @@
   "version": "2.15.32",
   "title": "Order Placed",
   "description": "",
-  "registries": ["smartcheckout"],
+  "registries": [
+    "smartcheckout"
+  ],
   "scripts": {
     "postreleasy": "vtex publish --verbose"
   },
