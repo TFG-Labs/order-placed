@@ -16,6 +16,19 @@ export function getCookieValue(name: string) {
   return undefined
 }
 
+export function setCookieValue(
+  cookieName: string,
+  cookieValue: string | undefined,
+  days: number
+) {
+  if (!cookieValue) return;
+
+  const date = new Date();
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+  const expires = `expires=${date.toUTCString()}`;
+  document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/`;
+}
+
 const decodeBase64 = (str: string) => {
   const binaryString = atob(str)
   const len = binaryString.length
@@ -114,11 +127,17 @@ export const pushPayEvent = (
   const analytics = new EventAnalytics(3000, 3, account)
 
   const isApp = document?.cookie.includes('is_app=true')
+  const isBashPay = getCookieValue('bashpaybeta') === 'true';
+
   let transformedEventData: { [key: string]: string | object } = {
     eventCategory: 'Payments',
     eventAction: eventData.event_action?.replace(/\s/g, '_'),
     eventLabel: eventData.event_label || 'Pay_Event',
     eventDescription: eventData.event_description || 'Pay Event',
+    event_params: {
+      is_bash_pay: isBashPay,
+      is_webview: isApp,
+    }
   }
 
   eventData.event_description = truncateString(eventData.event_description, 100)
@@ -173,6 +192,12 @@ export const pushPayEvent = (
     // Don't push to the dataLayer as well for regular GTM.
     return
   }
+
+  transformedEventData.event_params = {
+    ...(transformedEventData.event_params as object),
+    is_bash_pay: isBashPay,
+    is_webview: isApp,
+  };
 
   pushToDataLayer({
     event: 'gaEvent',

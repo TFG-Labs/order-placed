@@ -23,6 +23,8 @@ class EventAnalytics {
     this.retries = 0
     this.maxRetries = maxRetries
     this.isApp = getCookieValue('is_app') === 'true'
+    this.sessionId = getCookieValue('session_id')
+    this.clientId = getCookieValue('client_id')
 
     // Start the interval to periodically send the buffered events
     setInterval(() => this.flush(), this.flushInterval)
@@ -68,31 +70,45 @@ class EventAnalytics {
       console.warn('🕸️ Web Analytics: GTM is not ready / configured.')
       return {}
     }
+    const isBashPay = document?.cookie.includes('bashpaybeta=true')
 
+    if (this.clientId && this.sessionId) return {
+      platform: 'Web',
+      clientId: this.clientId,
+      sessionId: this.sessionId,
+      feature_flag_parameters: [isBashPay ? 'bashpaybeta' : ''],
+    }
+    
     const clientIdPromise = new Promise<void>((resolve) => {
-      window.gtag('get', gaMeasurementId, 'client_id', (id: string) => {
-        this.clientId = id
-        resolve()
-      })
-    })
-
+      if (this.clientId) {
+        resolve();
+      } else {
+        window.gtag('get', gaMeasurementId, 'client_id', (id: string) => {
+          this.clientId = id;
+          resolve();
+        });
+      }
+    });
+    
     const sessionIdPromise = new Promise<void>((resolve) => {
-      window.gtag('get', gaMeasurementId, 'session_id', (id: string) => {
-        this.sessionId = id
-        resolve()
-      })
-    })
+      if (this.sessionId) {
+        resolve();
+      } else {
+        window.gtag('get', gaMeasurementId, 'session_id', (id: string) => {
+          this.sessionId = id;
+          resolve();
+        });
+      }
+    });
 
     // Wait for both clientId and sessionId to be retrieved
     await Promise.all([clientIdPromise, sessionIdPromise])
-
-    const isBashPay = document?.cookie.includes('bashpaybeta=true')
 
     return {
       platform: 'Web',
       clientId: this.clientId,
       sessionId: this.sessionId,
-      feature_flag_parameters: [isBashPay ? 'bashpaybeta' : ''],
+      feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
     }
   }
 
