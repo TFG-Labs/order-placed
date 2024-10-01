@@ -4911,9 +4911,9 @@ test-exclude@^5.2.3:
   version "1.9.15"
   resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.15/public/@types/thefoschini.order-details#69e4de12e6248a60353776356ffc860bbdbc8c8c"
 
-"thefoschini.order-placed@http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.32/public/@types/thefoschini.order-placed":
-  version "2.15.32"
-  resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.32/public/@types/thefoschini.order-placed#d3404fec77fdb83d2b1ca8efe12e21bcc060142c"
+"thefoschini.order-placed@https://bpf3499--thefoschini.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-placed@2.15.33+build1727793819/public/@types/thefoschini.order-placed":
+  version "2.15.33"
+  resolved "https://bpf3499--thefoschini.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-placed@2.15.33+build1727793819/public/@types/thefoschini.order-placed#066d09bbc4c696e35283c52817abdac3befe1daf"
 
 throat@^4.0.0:
   version "4.1.0"
@@ -5145,9 +5145,9 @@ verror@1.10.0:
   version "1.9.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pixel-manager@1.9.0/public/@types/vtex.pixel-manager#eb61e263c4f8024430ef1a19d28bcf608db3d481"
 
-"vtex.profile-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.18.0/public/@types/vtex.profile-form":
-  version "3.18.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.18.0/public/@types/vtex.profile-form#2371087d1667ff8cc929315dc61d915b02ca8e42"
+"vtex.profile-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.19.0/public/@types/vtex.profile-form":
+  version "3.19.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.19.0/public/@types/vtex.profile-form#2d4fab6d204b2b693b217fb6a25e47dc58b41604"
 
 "vtex.pwa-components@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pwa-components@0.4.1/public/@types/vtex.pwa-components":
   version "0.4.1"

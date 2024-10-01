@@ -20,6 +20,7 @@ import Notice from './components/Notice'
 import './styles.css'
 import { getCookie } from './utils/functions'
 import { gaMeasurementId } from './utils'
+import { isMobileDevice } from './utils/events'
 
 interface OrderGroupData {
   orderGroup: OrderGroup
@@ -51,12 +52,15 @@ const OrderPlaced: FC = () => {
         // eslint-disable-next-line prefer-rest-params
         window.dataLayer.push(arguments)
       }
+
+      const isMobile = isMobileDevice()
+      const webPlatform = isMobile ? 'Mobi' : 'Web'
       window.gtag('js', new Date())
       window.gtag('config', gaMeasurementId, {
         user_properties: {
           platform_type: document.cookie.includes('is_app=true')
             ? 'App'
-            : 'Web',
+            : webPlatform,
         },
       })
     }
