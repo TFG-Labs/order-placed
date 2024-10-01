@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-console */
 
-import { getCookieValue } from '.'
+import { getCookieValue, isMobileDevice } from '.'
 import { gaMeasurementId } from '../constants'
 
 class EventAnalytics {
@@ -63,49 +63,52 @@ class EventAnalytics {
   private async getWebTrackingConfig() {
     // Platform is App
     if (this.isApp) {
-      return {}
+      return Promise.resolve({})
     }
 
     if (typeof window.gtag !== 'function') {
       console.warn('🕸️ Web Analytics: GTM is not ready / configured.')
-      return {}
+      return Promise.resolve({})
     }
     const isBashPay = document?.cookie.includes('bashpaybeta=true')
+    const isMobile = isMobileDevice()
+    const platform = isMobile ? 'Mobi' : 'Web'
 
-    if (this.clientId && this.sessionId) return {
-      platform: 'Web',
-      clientId: this.clientId,
-      sessionId: this.sessionId,
-      feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
-    }
-    
+    if (this.clientId && this.sessionId)
+      return Promise.resolve({
+        platform,
+        clientId: this.clientId,
+        sessionId: this.sessionId,
+        feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
+      })
+
     const clientIdPromise = new Promise<void>((resolve) => {
       if (this.clientId) {
-        resolve();
-      } else {
-        window.gtag('get', gaMeasurementId, 'client_id', (id: string) => {
-          this.clientId = id;
-          resolve();
-        });
+        resolve()
       }
-    });
-    
+      window.gtag('get', gaMeasurementId, 'client_id', (id: string) => {
+        this.clientId = id
+        console.info(this.clientId)
+        resolve()
+      })
+    })
+
     const sessionIdPromise = new Promise<void>((resolve) => {
       if (this.sessionId) {
-        resolve();
-      } else {
-        window.gtag('get', gaMeasurementId, 'session_id', (id: string) => {
-          this.sessionId = id;
-          resolve();
-        });
+        resolve()
       }
-    });
+      window.gtag('get', gaMeasurementId, 'session_id', (id: string) => {
+        this.sessionId = id
+        console.info(this.sessionId)
+        resolve()
+      })
+    })
 
     // Wait for both clientId and sessionId to be retrieved
     await Promise.all([clientIdPromise, sessionIdPromise])
 
     return {
-      platform: 'Web',
+      platform,
       clientId: this.clientId,
       sessionId: this.sessionId,
       feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
@@ -121,7 +124,6 @@ class EventAnalytics {
     this.buffer = []
 
     const cookieData = this.getAppAnalyticsCookieData()
-
     const webData = await this.getWebTrackingConfig()
 
     const body = JSON.stringify({

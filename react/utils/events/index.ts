@@ -21,12 +21,12 @@ export function setCookieValue(
   cookieValue: string | undefined,
   days: number
 ) {
-  if (!cookieValue) return;
+  if (!cookieValue) return
 
-  const date = new Date();
-  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-  const expires = `expires=${date.toUTCString()}`;
-  document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/`;
+  const date = new Date()
+  date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+  const expires = `expires=${date.toUTCString()}`
+  document.cookie = `${cookieName}=${cookieValue}; ${expires}; path=/`
 }
 
 const decodeBase64 = (str: string) => {
@@ -119,15 +119,27 @@ export const truncateString = (str: string, maxLength = 100): string => {
   return str.length > maxLength ? `${str.slice(0, maxLength - 3)}...` : str
 }
 
+export const isMobileDevice = () => {
+  if (typeof window === 'undefined' || typeof navigator === 'undefined')
+    return false
+
+  const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+
+  return mobileRegex.test(navigator?.userAgent)
+}
+
 export const pushPayEvent = (
   eventData: DataLayerObject,
   account: 'thefoschini' | 'thefoschiniqa' = 'thefoschini'
 ) => {
   if (!eventData) return
+
+  const isMobile = isMobileDevice()
+
   const analytics = new EventAnalytics(3000, 3, account)
 
   const isApp = document?.cookie.includes('is_app=true')
-  const isBashPay = getCookieValue('bashpaybeta') === 'true';
+  const isBashPay = getCookieValue('bashpaybeta') === 'true'
 
   let transformedEventData: { [key: string]: string | object } = {
     eventCategory: 'Payments',
@@ -137,7 +149,7 @@ export const pushPayEvent = (
     event_params: {
       is_bash_pay: isBashPay,
       is_webview: isApp,
-    }
+    },
   }
 
   eventData.event_description = truncateString(eventData.event_description, 100)
@@ -197,11 +209,11 @@ export const pushPayEvent = (
     ...(transformedEventData.event_params as object),
     is_bash_pay: isBashPay,
     is_webview: isApp,
-  };
+  }
 
   pushToDataLayer({
     event: 'gaEvent',
-    platform: 'Web',
+    platform: isMobile ? 'Mobi' : 'Web',
     ...transformedEventData,
   })
 }
