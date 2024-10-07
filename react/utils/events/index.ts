@@ -211,6 +211,17 @@ export const pushPayEvent = (
     is_webview: isApp,
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const BashPayObject = (window as any)?.BashPay
+
+  const message = JSON.stringify(transformedEventData)
+
+  if (BashPayObject) {
+    BashPayObject.postMessage(message)
+  } else {
+    window.parent.postMessage(message, '*')
+  }
+
   pushToDataLayer({
     event: 'gaEvent',
     platform: isMobile ? 'Mobi' : 'Web',

@@ -32,8 +32,25 @@ class EventAnalytics {
 
   public trackEvent(event: any) {
     this.buffer.push(event)
+    this.postMessage(event)
     if (this.buffer.length === 1) {
       this.flush()
+    }
+  }
+
+  public postMessage(event: any) {
+    if (!event || !event.name) return
+
+    const BashPayObject = (window as any)?.BashPay
+
+    const message = JSON.stringify(event)
+
+    if (BashPayObject) {
+      console.info('📈 BashPayObject.postMessage for Event')
+      BashPayObject.postMessage(message)
+    } else {
+      console.info('📈 window.parent.postMessage for Event')
+      window.parent.postMessage(message, '*')
     }
   }
 
