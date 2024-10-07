@@ -4907,10 +4907,6 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-"thefoschini.order-placed@https://bpf3520--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-placed@2.15.36+build1728285755/public/@types/thefoschini.order-placed":
-  version "2.15.36"
-  resolved "https://bpf3520--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-placed@2.15.36+build1728285755/public/@types/thefoschini.order-placed#d07cc4c19589c23c24c506368debc2666e947a96"
-
 "thefoschiniqa.order-details@http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-details@1.9.14/public/@types/thefoschiniqa.order-details":
   version "1.9.14"
   resolved "http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-details@1.9.14/public/@types/thefoschiniqa.order-details#4d4ebf069ceca1d72bb0cd60da0d607e87731f86"
