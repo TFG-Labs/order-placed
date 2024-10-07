@@ -214,10 +214,12 @@ export const pushPayEvent = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const BashPayObject = (window as any)?.BashPay
 
+  const message = JSON.stringify(transformedEventData)
+
   if (BashPayObject) {
-    BashPayObject.postMessage(transformedEventData)
+    BashPayObject.postMessage(message)
   } else {
-    window.parent.postMessage(transformedEventData, '*')
+    window.parent.postMessage(message, '*')
   }
 
   pushToDataLayer({

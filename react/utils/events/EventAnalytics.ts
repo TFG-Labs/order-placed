@@ -43,12 +43,14 @@ class EventAnalytics {
 
     const BashPayObject = (window as any)?.BashPay
 
+    const message = JSON.stringify(event)
+
     if (BashPayObject) {
       console.info('📈 BashPayObject.postMessage for Event')
-      BashPayObject.postMessage(event)
+      BashPayObject.postMessage(message)
     } else {
       console.info('📈 window.parent.postMessage for Event')
-      window.parent.postMessage(event, '*')
+      window.parent.postMessage(message, '*')
     }
   }
 
