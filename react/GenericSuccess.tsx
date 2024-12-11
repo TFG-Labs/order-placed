@@ -33,7 +33,10 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
   }
 
   return (
-    <div style={{ margin: '0 auto', textAlign: 'center' }}>
+    <div
+      className={`${handles.confirmationContainer}`}
+      style={{ margin: '0 auto', textAlign: 'center' }}
+    >
       <SuccessImage size={280} />
       <h1 style={{ fontSize: '16px', opacity: '.7' }}>
         Thank you for your purchase
@@ -42,6 +45,9 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
         style={{
           lineHeight: 'normal',
           fontWeight: 400,
+          width: '90%',
+          maxWidth: '480px',
+          margin: '0 auto',
           paddingBottom: '16px',
           borderBottom: '1px solid rgb(4 4 4 / 10%) ',
         }}
@@ -70,12 +76,23 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
         </span>
       </h2>
       <p>You&apos;ll receive an order confirmation email/SMS.</p>
-      <p>
-        You can track the status of your order in the Orders section in your
-        Profile.
+      <p style={{ lineHeight: 'normal', marginBottom: '16px' }}>
+        You can track the status of your order <br /> in the Orders section in
+        your Profile.
       </p>
 
-      <button className={handles.continueShoppingButton} onClick={handleClick}>
+      <button
+        style={{
+          border: 0,
+          backgroundColor: '#040404',
+          color: '#fff',
+          fontSize: '14px',
+          padding: '16px',
+          borderRadius: '4px',
+        }}
+        className={handles.continueShoppingButton}
+        onClick={handleClick}
+      >
         Continue shopping
       </button>
     </div>

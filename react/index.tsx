@@ -21,6 +21,7 @@ import './styles.css'
 import { getCookie } from './utils/functions'
 import { gaMeasurementId } from './utils'
 import { isMobileDevice } from './utils/events'
+import GenericSuccess from './GenericSuccess'
 
 interface OrderGroupData {
   orderGroup: OrderGroup
@@ -39,12 +40,21 @@ const OrderPlaced: FC = () => {
   const { settings = {} } = usePWA() || {}
   const [installDismissed, setInstallDismissed] = useState(false)
   const [isApp, setIsApp] = useState(false)
+  const [canGetCookies, setCanGetCookies] = useState(false)
+
+  const orderNumber = runtime.query.og
 
   const { data, loading, error } = useQuery<OrderGroupData>(GET_ORDER_GROUP, {
     variables: {
-      orderGroup: runtime.query.og,
+      orderGroup: orderNumber,
     },
   })
+
+  const { customerEmail, customerEmailLoading } = useGetCustomerEmail(
+    data?.orderGroup.orders[0].clientProfileData.email
+  )
+
+  const notices = useGetNotices()
 
   const handleGtagInitialization = () => {
     if (typeof window !== 'undefined' && window.dataLayer && !window.gtag) {
@@ -71,6 +81,32 @@ const OrderPlaced: FC = () => {
   useEffect(() => {
     const isAppCookie = getCookie('is_app')
     setIsApp(!!isAppCookie)
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let timeoutId: any
+
+    if (
+      !document.cookie?.includes('is_app') &&
+      !document.cookie?.includes('session_id=')
+    ) {
+      timeoutId = setTimeout(() => {
+        // If we're able to get is_app,
+        // means webview should be able to pull order info.
+        setCanGetCookies(true)
+      }, 5000)
+    } else {
+      // If there's no session_id,
+      // it also means it's Android with blocked cookies,
+      // hence hide the nav bar.
+      setIsApp(true)
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Google Analytics Setup
@@ -83,14 +119,14 @@ const OrderPlaced: FC = () => {
     }
   }, [])
 
-  const { customerEmail, customerEmailLoading } = useGetCustomerEmail(
-    data?.orderGroup.orders[0].clientProfileData.email
-  )
-
-  const notices = useGetNotices()
+  useEffect(() => {
+    console.error(error)
+  }, [error])
 
   // render loading skeleton if query is still loading
-  if (loading || customerEmailLoading) return <Skeleton />
+  if (canGetCookies && (loading || customerEmailLoading)) return <Skeleton />
+  if (loading || customerEmailLoading)
+    return <GenericSuccess orderNumber={orderNumber} />
 
   // forbidden error
   if (
