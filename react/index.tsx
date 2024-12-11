@@ -82,18 +82,11 @@ const OrderPlaced: FC = () => {
     const isAppCookie = getCookie('is_app')
     setIsApp(!!isAppCookie)
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let timeoutId: any
-
     if (
-      !document.cookie?.includes('is_app') &&
-      !document.cookie?.includes('session_id=')
+      document.cookie?.includes('is_app') || // from app journey
+      document.cookie?.includes('session_id=') // from web journey
     ) {
-      timeoutId = setTimeout(() => {
-        // If we're able to get is_app,
-        // means webview should be able to pull order info.
-        setCanGetCookies(true)
-      }, 5000)
+      setCanGetCookies(true)
     } else {
       // If there's no session_id,
       // it also means it's Android with blocked cookies,
@@ -101,11 +94,6 @@ const OrderPlaced: FC = () => {
       setIsApp(true)
     }
 
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId)
-      }
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
