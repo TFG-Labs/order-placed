@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { SuccessImage } from './Icons/SuccessImage'
@@ -31,6 +31,28 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
     const min = String(date.getMinutes()).padStart(2, '0')
     return `${year}/${month}/${day} at ${hour}:${min}`
   }
+
+  useEffect(() => {
+    window?.dataLayer?.push({
+      eventCategory: 'Order_Placed_Generic',
+      eventAction: 'Order_Placed',
+      eventLabel: 'Generic_Sueccess',
+      eventDescription:
+        'User saw the Generic order confirmation page because cookies were not detected.',
+    })
+
+    window?.dataLayer?.push({
+      event: 'purchase',
+      ecommerce: {
+        purchase: {
+          actionField: {
+            id: orderNumber,
+          },
+          products: [],
+        },
+      },
+    })
+  }, [orderNumber])
 
   return (
     <div
