@@ -1,5 +1,5 @@
 import React from 'react'
-import { OrderSplitNotice } from 'thefoschiniqa.order-details'
+import { OrderSplitNotice } from 'thefoschini.order-details'
 import { useIntl } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
 
