@@ -5494,13 +5494,13 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-"thefoschini.order-details@https://testing--thefoschini.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-details@1.9.14+build1725259925/public/@types/thefoschini.order-details":
-  version "1.9.14"
-  resolved "https://testing--thefoschini.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-details@1.9.14+build1725259925/public/@types/thefoschini.order-details#04c1c590b8b1c8eb781cf4e36fbdf2d61d3463c3"
+"thefoschini.order-details@http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.15/public/@types/thefoschini.order-details":
+  version "1.9.15"
+  resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.15/public/@types/thefoschini.order-details#69e4de12e6248a60353776356ffc860bbdbc8c8c"
 
-"thefoschini.order-placed@https://testing--thefoschini.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-placed@2.15.32+build1726745752/public/@types/thefoschini.order-placed":
-  version "2.15.32"
-  resolved "https://testing--thefoschini.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-placed@2.15.32+build1726745752/public/@types/thefoschini.order-placed#5de12d0da263fc5103ddfdb99af7f658549f143f"
+"thefoschini.order-placed@http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.41/public/@types/thefoschini.order-placed":
+  version "2.15.41"
+  resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.41/public/@types/thefoschini.order-placed#4d37df4430cdcbb0fda601afad0e69f4e1063b9b"
 
 throat@^4.0.0:
   version "4.1.0"
@@ -5769,9 +5769,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.26.0/public/@types/vtex.address-form":
-  version "4.26.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.26.0/public/@types/vtex.address-form#758d5251ad042fba523ffc7aaf35f512a8d6a203"
+"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.26.1/public/@types/vtex.address-form":
+  version "4.26.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.26.1/public/@types/vtex.address-form#f578e6e1156d9ec20cae8f7c4018db74f83546ba"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"
@@ -5797,9 +5797,9 @@ verror@1.10.0:
   version "0.4.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pwa-components@0.4.1/public/@types/vtex.pwa-components#a576d7799f8e4c5c4db1ff539dcebe0cf95dbbd9"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.0/public/@types/vtex.render-runtime":
-  version "8.135.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.0/public/@types/vtex.render-runtime#7ab0d1ab46f6cd49954a159f973cdf70fb9a99c6"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.1/public/@types/vtex.render-runtime":
+  version "8.135.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.1/public/@types/vtex.render-runtime#357ddee2f9249db4209de73b26c43997a5ca4422"
 
 "vtex.responsive-layout@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.responsive-layout@0.1.4/public/@types/vtex.responsive-layout":
   version "0.1.4"

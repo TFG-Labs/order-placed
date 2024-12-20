@@ -84,7 +84,7 @@ const OrderPlaced: FC = () => {
 
     if (
       document.cookie?.includes('is_app') || // from app journey
-      document.cookie?.includes('session_id=') // from web journey
+      document.cookie?.includes('session_id') // from web journey
     ) {
       setCanGetCookies(true)
     } else {
