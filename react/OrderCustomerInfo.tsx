@@ -1,5 +1,5 @@
 import React from 'react'
-import { CustomerInfo } from 'thefoschini.order-details'
+import { CustomerInfo } from 'thefoschiniqa.order-details'
 
 import { useOrder } from './components/OrderContext'
 
