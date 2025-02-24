@@ -4907,13 +4907,13 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-"thefoschini.order-details@http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.6/public/@types/thefoschini.order-details":
+"thefoschini.order-details@https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-details@1.9.6+build1724921748/public/@types/thefoschini.order-details":
   version "1.9.6"
-  resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.6/public/@types/thefoschini.order-details#faa5c63e6f0b4303eac80d93d44356db554e850d"
+  resolved "https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-details@1.9.6+build1724921748/public/@types/thefoschini.order-details#ced6b7feb6e5779138b7ccac638e944553b958b7"
 
-"thefoschiniqa.order-placed@http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.12/public/@types/thefoschiniqa.order-placed":
-  version "2.15.12"
-  resolved "http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.12/public/@types/thefoschiniqa.order-placed#0f7c733b322fcab547b9a326b46ad519fda6b57c"
+"thefoschiniqa.order-placed@https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschiniqa.order-placed@2.15.44+build1740408649/public/@types/thefoschiniqa.order-placed":
+  version "2.15.44"
+  resolved "https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschiniqa.order-placed@2.15.44+build1740408649/public/@types/thefoschiniqa.order-placed#28f4242bef6c341265977a62fcda9be0db86aa62"
 
 throat@^4.0.0:
   version "4.1.0"
@@ -5125,9 +5125,9 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.24.6/public/@types/vtex.address-form":
-  version "4.24.6"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.24.6/public/@types/vtex.address-form#d84b94826cd443f3f1fcfbb9ac8112b43be35572"
+"vtex.address-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.26.1/public/@types/vtex.address-form":
+  version "4.26.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.address-form@4.26.1/public/@types/vtex.address-form#f578e6e1156d9ec20cae8f7c4018db74f83546ba"
 
 "vtex.css-handles@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles":
   version "0.4.4"
@@ -5145,17 +5145,17 @@ verror@1.10.0:
   version "1.9.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pixel-manager@1.9.0/public/@types/vtex.pixel-manager#eb61e263c4f8024430ef1a19d28bcf608db3d481"
 
-"vtex.profile-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.17.0/public/@types/vtex.profile-form":
-  version "3.17.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.17.0/public/@types/vtex.profile-form#2fcbd86f2438a4602191c10c5f2667b5c4feaf44"
+"vtex.profile-form@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.19.0/public/@types/vtex.profile-form":
+  version "3.19.0"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.profile-form@3.19.0/public/@types/vtex.profile-form#2d4fab6d204b2b693b217fb6a25e47dc58b41604"
 
 "vtex.pwa-components@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pwa-components@0.4.1/public/@types/vtex.pwa-components":
   version "0.4.1"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.pwa-components@0.4.1/public/@types/vtex.pwa-components#a576d7799f8e4c5c4db1ff539dcebe0cf95dbbd9"
 
-"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.2/public/@types/vtex.render-runtime":
-  version "8.134.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.2/public/@types/vtex.render-runtime#ae69e2b2a471291c6c6b155e17510150fbfc2d0e"
+"vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.1/public/@types/vtex.render-runtime":
+  version "8.135.1"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.135.1/public/@types/vtex.render-runtime#357ddee2f9249db4209de73b26c43997a5ca4422"
 
 "vtex.responsive-layout@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.responsive-layout@0.1.4/public/@types/vtex.responsive-layout":
   version "0.1.4"
@@ -5169,13 +5169,13 @@ verror@1.10.0:
   version "2.3.0"
   resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.shipping-estimate-translator@2.3.0/public/@types/vtex.shipping-estimate-translator#47cd5baf775e33d3c623c56bbe223acca703faf7"
 
-"vtex.store-resources@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.98.0/public/@types/vtex.store-resources":
-  version "0.98.0"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.98.0/public/@types/vtex.store-resources#24ee6090a82f3e15d70bab403058a6cd209546d2"
+"vtex.store-resources@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.101.2/public/@types/vtex.store-resources":
+  version "0.101.2"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.store-resources@0.101.2/public/@types/vtex.store-resources#bc315cd1b96c4d0b442087fd4966fa883512b54b"
 
-"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide":
-  version "9.146.9"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide#d1601fedfb665c6173334753171717da64e670bc"
+"vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.13/public/@types/vtex.styleguide":
+  version "9.146.13"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.13/public/@types/vtex.styleguide#f4ccbc54621bf5114ddd115b6032ae320f2eba55"
 
 "vtex.totalizer-translator@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.totalizer-translator@2.6.1/public/@types/vtex.totalizer-translator":
   version "2.6.1"
