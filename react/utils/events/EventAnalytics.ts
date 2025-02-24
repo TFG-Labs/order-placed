@@ -59,7 +59,9 @@ class EventAnalytics {
       return {}
     }
 
-    const cookieData = getCookieValue('app_analytics_data')
+    const cookieData = decodeURIComponent(
+      getCookieValue('app_analytics_data') ?? ''
+    )
 
     if (!cookieData) return {}
 
