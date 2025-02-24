@@ -40,7 +40,7 @@ const decodeBase64 = (str: string) => {
 }
 
 const getUserId = (
-  account: 'thefoschini' | 'thefoschiniqa' = 'thefoschini'
+  account: 'thefoschiniqa' | 'thefoschiniqa' = 'thefoschiniqa'
 ) => {
   const vtexToken = getCookieValue(`VtexIdclientAutCookie_${account}`)
 
@@ -130,7 +130,7 @@ export const isMobileDevice = () => {
 
 export const pushPayEvent = (
   eventData: DataLayerObject,
-  account: 'thefoschini' | 'thefoschiniqa' = 'thefoschini'
+  account: 'thefoschiniqa' | 'thefoschiniqa' = 'thefoschiniqa'
 ) => {
   if (!eventData) return
 

@@ -13,9 +13,9 @@ class EventAnalytics {
   public clientId?: string
   public sessionId?: string
   private isApp: boolean
-  constructor(flushInterval = 3000, maxRetries = 3, account = 'thefoschini') {
+  constructor(flushInterval = 3000, maxRetries = 3, account = 'thefoschiniqa') {
     this.endpoint =
-      account === 'thefoschini'
+      account === 'thefoschiniqa'
         ? 'https://store-api.www.bash.com/custom-api/analytics/collect'
         : 'https://store-api.staging.tfglabs.dev/custom-api/analytics/collect'
     this.buffer = []

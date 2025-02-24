@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { OrderOptions } from 'thefoschini.order-details'
+import { OrderOptions } from 'thefoschiniqa.order-details'
 import { useCssHandles } from 'vtex.css-handles'
 
 import { useOrder } from './components/OrderContext'
