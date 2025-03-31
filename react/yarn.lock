@@ -5494,13 +5494,9 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-"thefoschini.order-details@https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-details@1.9.6+build1724921748/public/@types/thefoschini.order-details":
-  version "1.9.6"
-  resolved "https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschini.order-details@1.9.6+build1724921748/public/@types/thefoschini.order-details#ced6b7feb6e5779138b7ccac638e944553b958b7"
-
-"thefoschiniqa.order-placed@https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschiniqa.order-placed@2.15.54+build1743429644/public/@types/thefoschiniqa.order-placed":
-  version "2.15.54"
-  resolved "https://testing--thefoschiniqa.myvtex.com/_v/private/typings/linked/v1/thefoschiniqa.order-placed@2.15.54+build1743429644/public/@types/thefoschiniqa.order-placed#8fefcb6e74497db5ab770b46ac7c20a1acec6cba"
+"thefoschiniqa.order-placed@http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.53/public/@types/thefoschiniqa.order-placed":
+  version "2.15.53"
+  resolved "http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.53/public/@types/thefoschiniqa.order-placed#ed9e0debea70e89063ba02ef823149e0bb5c157b"
 
 throat@^4.0.0:
   version "4.1.0"
