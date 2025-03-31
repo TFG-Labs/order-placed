@@ -140,6 +140,7 @@ export const pushPayEvent = (
 
   const isApp = document?.cookie.includes('is_app=true')
   const isBashPay = getCookieValue('bashpaybeta') === 'true'
+  const isHeadlessCheckout = getCookieValue('bash_checkout_beta') === 'true'
 
   let transformedEventData: { [key: string]: string | object } = {
     eventCategory: 'Payments',
@@ -149,6 +150,9 @@ export const pushPayEvent = (
     event_params: {
       is_bash_pay: isBashPay,
       is_webview: isApp,
+      ...(isHeadlessCheckout
+        ? { is_headless_checkout: isHeadlessCheckout }
+        : {}),
     },
   }
 
@@ -209,6 +213,7 @@ export const pushPayEvent = (
     ...(transformedEventData.event_params as object),
     is_bash_pay: isBashPay,
     is_webview: isApp,
+    ...(isHeadlessCheckout && { is_headless_checkout: isHeadlessCheckout }),
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
