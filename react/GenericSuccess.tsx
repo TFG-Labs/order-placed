@@ -33,10 +33,14 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
   }
 
   useEffect(() => {
+    const isHeadlessCheckout = document.cookie.includes(
+      'bash_checkout_beta=true'
+    )
+
     window?.dataLayer?.push({
       eventCategory: 'Order_Placed_Generic',
       eventAction: 'Order_Placed',
-      eventLabel: 'Generic_Sueccess',
+      eventLabel: 'Generic_Success',
       eventDescription:
         'User saw the Generic order confirmation page because cookies were not detected.',
     })
@@ -51,6 +55,7 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
           products: [],
         },
       },
+      ...(isHeadlessCheckout ? { is_headless_checkout: true } : {}),
     })
   }, [orderNumber])
 
