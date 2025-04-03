@@ -1,5 +1,5 @@
 {
-  "vendor": "thefoschini",
+  "vendor": "thefoschiniqa",
   "name": "order-placed",
   "version": "2.15.54",
   "title": "Order Placed",
@@ -17,7 +17,7 @@
   "dependencies": {
     "vtex.order-placed-graphql": "1.x",
     "vtex.styleguide": "9.x",
-    "thefoschini.order-details": "1.x",
+    "thefoschiniqa.order-details": "1.x",
     "vtex.shipping-estimate-translator": "2.x",
     "vtex.address-form": "4.x",
     "vtex.profile-form": "3.x",
