@@ -5494,9 +5494,9 @@ test-exclude@^5.2.3:
     read-pkg-up "^4.0.0"
     require-main-filename "^2.0.0"
 
-"thefoschiniqa.order-placed@http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.53/public/@types/thefoschiniqa.order-placed":
-  version "2.15.53"
-  resolved "http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.53/public/@types/thefoschiniqa.order-placed#ed9e0debea70e89063ba02ef823149e0bb5c157b"
+"thefoschiniqa.order-placed@http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.59/public/@types/thefoschiniqa.order-placed":
+  version "2.15.59"
+  resolved "http://thefoschiniqa.vtexassets.com/_v/public/typings/v1/thefoschiniqa.order-placed@2.15.59/public/@types/thefoschiniqa.order-placed#e17e6d34a7d5bc910a7c25b7c4909fa052fd7627"
 
 throat@^4.0.0:
   version "4.1.0"
