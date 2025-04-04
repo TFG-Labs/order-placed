@@ -147,7 +147,6 @@ class EventAnalytics {
 
     const cookieData = this.getAppAnalyticsCookieData()
     const webData = await this.getWebTrackingConfig()
-    const authToken = getCookieValue(`VtexIdclientAutCookie_${this.account}`)
     const isFacebook = this.isApp && getCookieValue(`swv`) === 'true' && eventsToSend.some(event => event.name === 'purchase')
 
     const body = JSON.stringify({
@@ -172,13 +171,13 @@ class EventAnalytics {
       if (this.endpoint) {
         const headers: HeadersInit = {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`,
         }
 
 
         const response = await fetch(this.endpoint, {
           method: 'POST',
           headers,
+          credentials: 'include',
           body,
         })
 
