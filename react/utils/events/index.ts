@@ -62,7 +62,8 @@ const getUserId = (
  */
 
 const getCustomerItems = () => {
-  const customerItems = getCookieValue('ga_data')
+  const customerItems =
+    sessionStorage.getItem('ga_items') ?? getCookieValue('ga_data')
   if (!customerItems) return []
 
   try {

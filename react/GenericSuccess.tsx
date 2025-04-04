@@ -55,7 +55,9 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
           products: [],
         },
       },
-      ...(isHeadlessCheckout ? { is_headless_checkout: true } : {}),
+      event_params: {
+        ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
+      },
     })
   }, [orderNumber])
 
