@@ -82,6 +82,8 @@ const pushToDataLayer = (
 ) => {
   if (typeof window === 'undefined') return
 
+  const isHeadlessCheckout = getCookieValue('bash_checkout_beta') === 'true'
+
   let forDataLayer: DataLayerObject = { event: data.event }
 
   if (ecommerce && !data.ecommerce) {
@@ -104,6 +106,10 @@ const pushToDataLayer = (
 
   // Identify user as headless on GTM.
   forDataLayer.is_headless = true
+
+  if (isHeadlessCheckout) {
+    forDataLayer.is_headless_checkout = true
+  }
 
   window.dataLayer?.push(forDataLayer)
 }
