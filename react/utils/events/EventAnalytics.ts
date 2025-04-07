@@ -6,6 +6,7 @@ import { gaMeasurementId } from '../constants'
 
 class EventAnalytics {
   public endpoint: string
+  public account: string
   public buffer: any[]
   public flushInterval: number
   public retries: number
@@ -16,8 +17,9 @@ class EventAnalytics {
   constructor(flushInterval = 3000, maxRetries = 3, account = 'thefoschini') {
     this.endpoint =
       account === 'thefoschini'
-        ? 'https://store-api.www.bash.com/custom-api/analytics/collect'
-        : 'https://store-api.staging.tfglabs.dev/custom-api/analytics/collect'
+        ? 'https://web-api.bash.com/v1/analytics/collect'
+        : 'https://web-api.staging.tfglabs.dev/v1/analytics/collect'
+    this.account = account
     this.buffer = []
     this.flushInterval = flushInterval
     this.retries = 0
@@ -85,10 +87,6 @@ class EventAnalytics {
       return Promise.resolve({})
     }
 
-    if (typeof window.gtag !== 'function') {
-      console.warn('🕸️ Web Analytics: GTM is not ready / configured.')
-      return Promise.resolve({})
-    }
     const isBashPay = document?.cookie.includes('bashpaybeta=true')
     const isMobile = isMobileDevice()
     const platform = isMobile ? 'Mobi' : 'Web'
@@ -100,6 +98,11 @@ class EventAnalytics {
         sessionId: this.sessionId,
         feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
       })
+
+    if (typeof window.gtag !== 'function') {
+      console.warn('🕸️ Web Analytics: GTM is not ready / configured.')
+      return Promise.resolve({})
+    }
 
     const clientIdPromise = new Promise<void>((resolve) => {
       if (this.clientId) {
@@ -144,8 +147,10 @@ class EventAnalytics {
 
     const cookieData = this.getAppAnalyticsCookieData()
     const webData = await this.getWebTrackingConfig()
+    const isFacebook = this.isApp && getCookieValue(`swv`) === 'true' && eventsToSend.some(event => event.name === 'purchase')
 
     const body = JSON.stringify({
+      ...(isFacebook ? { fbEvents: true } : {}),
       ...cookieData,
       ...webData,
       events: eventsToSend,
@@ -164,11 +169,14 @@ class EventAnalytics {
 
     try {
       if (this.endpoint) {
+        const headers: HeadersInit = {
+          'Content-Type': 'application/json',
+        }
+
+
         const response = await fetch(this.endpoint, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers,
           credentials: 'include',
           body,
         })
