@@ -24,7 +24,7 @@ export const sampleNotices: NoticeType[] = [
 ]
 
 const getNoticesBaseApi = () => {
-  const prodHosts = ['bash.com', 'preprod--thefoschini.myvtex.com']
+  const prodHosts = ['bash.com', 'preprod--thefoschiniqa.myvtex.com']
 
   if (prodHosts.includes(window.location.host)) {
     return 'https://bash.com/api/customer-notices'
