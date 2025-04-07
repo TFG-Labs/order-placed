@@ -151,9 +151,7 @@ export const pushPayEvent = (
     event_params: {
       is_bash_pay: isBashPay,
       is_webview: isApp,
-      ...(isHeadlessCheckout
-        ? { is_headless_checkout: isHeadlessCheckout }
-        : {}),
+      ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
     },
   }
 
@@ -214,7 +212,7 @@ export const pushPayEvent = (
     ...(transformedEventData.event_params as object),
     is_bash_pay: isBashPay,
     is_webview: isApp,
-    ...(isHeadlessCheckout && { is_headless_checkout: isHeadlessCheckout }),
+    ...(isHeadlessCheckout && { is_headless_checkout: 'true' }),
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
