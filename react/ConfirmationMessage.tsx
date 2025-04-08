@@ -1,11 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-console */
 import React, { FC, useState, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useCssHandles } from 'vtex.css-handles'
+import { canUseDOM } from 'vtex.render-runtime'
 
 import { useOrderGroup } from './components/OrderGroupContext'
 import { FurnitureNote } from './FurnitureNote'
 import { getCookie, hasFurnitureDelivery } from './utils/functions'
 import { appHomeProd, appHomeStaging } from './utils'
+import { pushPayEvent } from './utils/events'
+import { useOrder } from './components/OrderContext'
 
 const CSS_HANDLES = [
   'confirmationMessage',
@@ -16,11 +21,42 @@ const CSS_HANDLES = [
 const ConfirmationMessage: FC = () => {
   const handles = useCssHandles(CSS_HANDLES)
   const orderGroup = useOrderGroup()
+  const { totals, value: totalValue, orderId } = useOrder()
+  const shippingFee =
+    totals.find((total) => total.id === 'Shipping')?.value ?? 0
+
   const [isApp, setIsApp] = useState(false)
 
   useEffect(() => {
     const isAppCookie = getCookie('is_app')
     setIsApp(isAppCookie === 'true')
+  }, [])
+
+  const track = () => {
+    if (!canUseDOM) return
+
+    const isBashPay = document?.cookie?.includes('bashpaybeta=true')
+    const isHeadlessCheckout = document?.cookie?.includes(
+      'bash_checkout_beta=true'
+    )
+
+    pushPayEvent({
+      event: 'purchase',
+      value: totalValue ? totalValue / 100 : 0,
+      transaction_id: orderId ?? '',
+      shipping: shippingFee ? shippingFee / 100 : 0,
+      event_description: 'Bash Purchase Event',
+      is_bash_pay: isBashPay,
+      is_headless_checkout: isHeadlessCheckout,
+    })
+  }
+
+  useEffect(() => {
+    window.addEventListener('gtm_load', track)
+
+    return () => {
+      window.removeEventListener('gtm_load', track)
+    }
   }, [])
 
   const handleClick = () => {
