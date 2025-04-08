@@ -1,17 +1,10 @@
-### What problem is this solving?
+## 🤨 Why - motive for change
 
-#### How it works
 
-#### How to test it?
+## 💡 What - work done
 
-[Workspace]()
 
-### Screenshots/Video example usage:
-- Desktop
-- Tablet
-- Movil
+## 🧪 How To Test
 
-### Related to / Depends on
 
-#### How does this PR make you feel? :link:
-![]()
+## 📋 Relevant links
