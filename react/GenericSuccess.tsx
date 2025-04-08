@@ -36,6 +36,7 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
     const isHeadlessCheckout = document.cookie.includes(
       'bash_checkout_beta=true'
     )
+    const isBashPay = document.cookie.includes('bashpaybeta=true')
 
     window?.dataLayer?.push({
       eventCategory: 'Order_Placed_Generic',
@@ -53,10 +54,13 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
             id: orderNumber,
           },
           products: [],
+          ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
+          ...(isBashPay ? { is_bash_pay: 'true' } : {}),
         },
       },
       event_params: {
         ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
+        ...(isBashPay ? { is_bash_pay: 'true' } : {}),
       },
     })
   }, [orderNumber])

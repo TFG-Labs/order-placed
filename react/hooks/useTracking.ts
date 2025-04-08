@@ -20,6 +20,8 @@ const useTracking = ({
   const { account } = runtime
 
   useEffect(() => {
+    console.info({ event })
+
     pushPayEvent(
       {
         event,
