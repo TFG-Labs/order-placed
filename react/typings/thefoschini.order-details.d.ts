@@ -1,4 +1,4 @@
-declare module 'thefoschiniqa.order-details' {
+declare module 'thefoschini.order-details' {
   export const OrderOptions
   export const PaymentMethod
   export const OrderSplitNotice
