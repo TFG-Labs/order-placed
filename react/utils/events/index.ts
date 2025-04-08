@@ -111,8 +111,6 @@ const pushToDataLayer = (
     forDataLayer.is_headless_checkout = true
   }
 
-  console.info({ forDataLayer })
-
   window.dataLayer?.push(forDataLayer)
 }
 
