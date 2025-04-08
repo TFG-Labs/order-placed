@@ -19,19 +19,26 @@ const useTracking = ({
   const runtime = useRuntime()
   const { account } = runtime
 
-  useEffect(() => {
-    console.info({ event })
-
+  const track = () => {
     pushPayEvent(
       {
         event,
         value: orderTotal ? orderTotal / 100 : 0,
         transaction_id: orderId ?? '',
         shipping: shippingFee ? shippingFee / 100 : 0,
+        event_description: 'Bash Purchase',
       },
       account
     )
-  }, [account, orderTotal])
+  }
+
+  useEffect(() => {
+    window.addEventListener('gtm_load', track)
+
+    return () => {
+      window.removeEventListener('gtm_load', track)
+    }
+  }, [])
 }
 
 export default useTracking
