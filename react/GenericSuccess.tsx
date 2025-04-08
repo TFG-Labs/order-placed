@@ -58,10 +58,6 @@ const GenericSuccess: FC<{ orderNumber: string }> = ({ orderNumber }) => {
           ...(isBashPay ? { is_bash_pay: 'true' } : {}),
         },
       },
-      event_params: {
-        ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
-        ...(isBashPay ? { is_bash_pay: 'true' } : {}),
-      },
     })
   }, [orderNumber])
 
