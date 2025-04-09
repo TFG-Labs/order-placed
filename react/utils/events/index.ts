@@ -205,6 +205,8 @@ export const pushPayEvent = (
       },
     }
 
+    console.log({ eventForAnalytics })
+
     analytics.trackEvent(eventForAnalytics)
 
     // Don't push to the dataLayer as well for regular GTM.
@@ -215,6 +217,7 @@ export const pushPayEvent = (
     ...(transformedEventData.event_params as object),
     is_bash_pay: isBashPay,
     is_webview: isApp,
+    is_headless_checkout: isHeadlessCheckout ? 'true' : undefined,
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
