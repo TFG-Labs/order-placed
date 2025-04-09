@@ -202,8 +202,6 @@ export const pushPayEvent = (
       },
     }
 
-    console.log({ eventForAnalytics })
-
     analytics.trackEvent(eventForAnalytics)
 
     // Don't push to the dataLayer as well for regular GTM.
