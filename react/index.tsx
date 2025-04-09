@@ -20,7 +20,7 @@ import Notice from './components/Notice'
 import './styles.css'
 import { getCookie } from './utils/functions'
 import { gaMeasurementId } from './utils'
-import { isMobileDevice } from './utils/events'
+import { isMobileDevice, pushPayEvent } from './utils/events'
 import GenericSuccess from './GenericSuccess'
 
 interface OrderGroupData {
@@ -58,6 +58,7 @@ const OrderPlaced: FC = () => {
 
   const handleGtagInitialization = () => {
     if (typeof window !== 'undefined' && window.dataLayer && !window.gtag) {
+      // eslint-disable-next-line func-names
       window.gtag = function () {
         // eslint-disable-next-line prefer-rest-params
         window.dataLayer.push(arguments)
@@ -110,6 +111,36 @@ const OrderPlaced: FC = () => {
   useEffect(() => {
     console.error(error)
   }, [error])
+
+  const trackWebPurchase = () => {
+    const purchaseData = {
+      event: 'purchase',
+      value: 10000 / 100,
+      transaction_id: orderNumber ?? 'UNKNOWN_ORDER_ID',
+      shipping: 2000 / 100,
+      event_description: 'Bash Web Purchase',
+    }
+
+    // eslint-disable-next-line no-console
+    console.info('TRACK PURCHASE', purchaseData)
+
+    pushPayEvent(purchaseData, runtime.account)
+  }
+
+  useEffect(() => {
+    if (orderNumber) {
+      if (typeof window.gtag !== 'undefined') {
+        trackWebPurchase()
+      } else {
+        window.addEventListener('gtag_loaded', trackWebPurchase)
+      }
+    }
+
+    return () => {
+      window.removeEventListener('gtag_loaded', trackWebPurchase)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orderNumber])
 
   // render loading skeleton if query is still loading
   if (canGetCookies && (loading || customerEmailLoading)) return <Skeleton />
