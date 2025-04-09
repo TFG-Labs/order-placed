@@ -28,16 +28,18 @@ const OrderTotal: FC = () => {
     totals.find((total) => total.id === 'Shipping')?.value ?? 0
 
   const trackWebPurchase = () => {
-    pushPayEvent(
-      {
-        event: 'purchase',
-        value: totalValue ? totalValue / 100 : 0,
-        transaction_id: orderId ?? '',
-        shipping: shippingFee ? shippingFee / 100 : 0,
-        event_description: 'Bash Purchase',
-      },
-      account
-    )
+    const purchaseData = {
+      event: 'purchase',
+      value: totalValue ? totalValue / 100 : 0,
+      transaction_id: orderId ?? '',
+      shipping: shippingFee ? shippingFee / 100 : 0,
+      event_description: 'Bash Purchase',
+    }
+
+    // eslint-disable-next-line no-console
+    console.info('TRACK PURCHASE', purchaseData)
+
+    pushPayEvent(purchaseData, account)
   }
 
   useEffect(() => {
