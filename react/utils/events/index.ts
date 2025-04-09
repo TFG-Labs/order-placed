@@ -140,6 +140,9 @@ export const pushPayEvent = (
 
   const isApp = document?.cookie.includes('is_app=true')
   const isBashPay = getCookieValue('bashpaybeta') === 'true'
+  const isHeadlessCheckout = document?.cookie.includes(
+    'bash_checkout_beta=true'
+  )
 
   let transformedEventData: { [key: string]: string | object } = {
     eventCategory: 'Payments',
@@ -149,6 +152,7 @@ export const pushPayEvent = (
     event_params: {
       is_bash_pay: isBashPay,
       is_webview: isApp,
+      is_headless_checkout: isHeadlessCheckout ? 'true' : undefined,
     },
   }
 
