@@ -150,12 +150,12 @@ export const pushPayEvent = (
   const isHeadlessCheckout = getCookieValue('bash_checkout_beta') === 'true'
 
   let transformedEventData: { [key: string]: string | object } = {
-    eventCategory: 'Payments',
+    eventCategory: 'OrderPlaced',
     eventAction: eventData.event_action?.replace(/\s/g, '_'),
-    eventLabel: eventData.event_label || 'Pay_Event',
-    eventDescription: eventData.event_description || 'Pay Event',
+    eventLabel: eventData.event_label || 'OrderPlaced_Event',
+    eventDescription: eventData.event_description || 'OrderPlaced Event',
     event_params: {
-      is_bash_pay: isBashPay,
+      is_bash_pay: 'true',
       is_webview: isApp,
       ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
     },
@@ -191,6 +191,8 @@ export const pushPayEvent = (
     transformedEventData.event = 'gaEvent'
   }
 
+  console.info({ transformedEventData })
+
   // If the event is not a GA event, send it to the mobile analytics endpoint.
   // After renaming events due to popular demand, we discovered that GA Web
   // does not like events that are not named 'gaEvent'.
@@ -216,10 +218,12 @@ export const pushPayEvent = (
 
   transformedEventData.event_params = {
     ...(transformedEventData.event_params as object),
-    is_bash_pay: isBashPay,
+    is_bash_pay: 'true',
     is_webview: isApp,
     ...(isHeadlessCheckout && { is_headless_checkout: 'true' }),
   }
+
+  console.info({ withParams: transformedEventData })
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const BashPayObject = (window as any)?.BashPay
