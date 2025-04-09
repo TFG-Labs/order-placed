@@ -67,6 +67,7 @@ const OrderPlaced: FC = () => {
       const webPlatform = isMobile ? 'Mobi' : 'Web'
       window.gtag('js', new Date())
       window.gtag('config', gaMeasurementId, {
+        debug_mode: true,
         user_properties: {
           platform_type: document.cookie.includes('is_app=true')
             ? 'App'
