@@ -34,6 +34,10 @@ const OrderTotal: FC = () => {
       transaction_id: orderId ?? '',
       shipping: shippingFee ? shippingFee / 100 : 0,
       event_description: 'Bash Purchase',
+      is_heaedless_checkout: document.cookie
+        .includes('bash_checkout_beta=true')
+        .toString(),
+      is_bash_pay: 'true',
     }
 
     // eslint-disable-next-line no-console

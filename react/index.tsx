@@ -113,12 +113,23 @@ const OrderPlaced: FC = () => {
   }, [error])
 
   const trackWebPurchase = () => {
+    const shippingFee =
+      data?.orderGroup?.orders[0]?.totals.find(
+        (total) => total.id === 'Shipping'
+      )?.value ?? 0
+
     const purchaseData = {
       event: 'purchase',
-      value: 10000 / 100,
-      transaction_id: orderNumber ?? 'UNKNOWN_ORDER_ID',
-      shipping: 2000 / 100,
+      value: data?.orderGroup?.orders[0]?.value
+        ? Number(data?.orderGroup?.orders[0]?.value) / 100
+        : 0,
+      transaction_id: orderNumber || 'UNKNOWN_ORDER_ID',
+      shipping: shippingFee ? Number(shippingFee) / 100 : 0,
       event_description: 'Bash Web Purchase',
+      is_heaedless_checkout: document.cookie
+        .includes('bash_checkout_beta=true')
+        .toString(),
+      is_bash_pay: 'true',
     }
 
     // eslint-disable-next-line no-console
@@ -128,7 +139,7 @@ const OrderPlaced: FC = () => {
   }
 
   useEffect(() => {
-    if (orderNumber) {
+    if (data?.orderGroup?.orders[0]) {
       if (typeof window.gtag !== 'undefined') {
         trackWebPurchase()
       } else {
