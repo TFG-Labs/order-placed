@@ -150,7 +150,7 @@ export const pushPayEvent = (
     eventLabel: eventData.event_label || 'Pay_Event',
     eventDescription: eventData.event_description || 'Pay Event',
     event_params: {
-      is_bash_pay: isBashPay,
+      is_bash_pay: isBashPay ? 'true' : 'false',
       is_webview: isApp,
       is_headless_checkout: isHeadlessCheckout ? 'true' : undefined,
     },
@@ -181,6 +181,8 @@ export const pushPayEvent = (
         items,
         user_id: getUserId()?.sub ?? undefined,
       },
+      ...(isBashPay ? { is_bash_pay: 'true' } : {}),
+      ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
     }
   } else {
     transformedEventData.event = 'gaEvent'
