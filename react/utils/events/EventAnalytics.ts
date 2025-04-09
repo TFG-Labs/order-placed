@@ -87,7 +87,7 @@ class EventAnalytics {
       return Promise.resolve({})
     }
 
-    const isBashPay = document?.cookie.includes('bashpaybeta=true')
+    const isBashPay = true
     const isHeadlessCheckout = document?.cookie.includes(
       'bash_checkout_beta=true'
     )
