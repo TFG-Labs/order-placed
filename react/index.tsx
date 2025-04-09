@@ -128,11 +128,13 @@ const OrderPlaced: FC = () => {
       transaction_id: orderNumber || 'UNKNOWN_ORDER_ID',
       shipping: shippingFee ? Number(shippingFee) / 100 : 0,
       event_description: 'Bash Web Purchase',
+      event_params: {
+        is_headless_checkout: document.cookie
+          .includes('bash_checkout_beta=true')
+          .toString(),
+        is_bash_pay: 'true',
+      },
       items,
-      is_headless_checkout: document.cookie
-        .includes('bash_checkout_beta=true')
-        .toString(),
-      is_bash_pay: 'true',
     }
 
     // eslint-disable-next-line no-console
@@ -142,7 +144,10 @@ const OrderPlaced: FC = () => {
   }
 
   useEffect(() => {
-    if (data?.orderGroup?.orders[0]?.value) {
+    if (
+      data?.orderGroup?.orders[0]?.value &&
+      data?.orderGroup?.orders[0]?.value > 0
+    ) {
       if (typeof window.gtag !== 'undefined') {
         trackWebPurchase()
       } else {
