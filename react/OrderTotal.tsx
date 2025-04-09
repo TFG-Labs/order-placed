@@ -1,13 +1,15 @@
-import React, { FC } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { FC, useEffect } from 'react'
 import { FormattedMessage } from 'react-intl'
 import TranslateTotalizer from 'vtex.totalizer-translator/TranslateTotalizer'
 import { applyModifiers, useCssHandles } from 'vtex.css-handles'
+import { useRuntime } from 'vtex.render-runtime'
 
 import FormattedPrice from './components/FormattedPrice'
 import { useOrder } from './components/OrderContext'
 import { getTotals } from './utils'
 import TaxInfo from './TaxInfo'
-import useTracking from './hooks/useTracking'
+import { pushPayEvent } from './utils/events'
 
 const CSS_HANDLES = [
   'totalListWrapper',
@@ -20,13 +22,37 @@ const CSS_HANDLES = [
 const OrderTotal: FC = () => {
   const { items, totals, value: totalValue, orderId } = useOrder()
   const handles = useCssHandles(CSS_HANDLES)
+  const runtime = useRuntime()
+  const { account } = runtime
   const shippingFee =
     totals.find((total) => total.id === 'Shipping')?.value ?? 0
 
-  // TODO
-  // coupon: "SUMMER_SALE", // get Voucher code.
+  const trackWebPurchase = () => {
+    pushPayEvent(
+      {
+        event: 'purchase',
+        value: totalValue ? totalValue / 100 : 0,
+        transaction_id: orderId ?? '',
+        shipping: shippingFee ? shippingFee / 100 : 0,
+        event_description: 'Bash Purchase',
+      },
+      account
+    )
+  }
 
-  useTracking({ orderTotal: totalValue || 0, orderId, shippingFee })
+  useEffect(() => {
+    if (totals) {
+      if (typeof window.gtag !== 'undefined') {
+        trackWebPurchase()
+      } else {
+        window.addEventListener('gtag_loaded', trackWebPurchase)
+      }
+    }
+
+    return () => {
+      window.removeEventListener('gtag_loaded', trackWebPurchase)
+    }
+  }, [totals])
 
   const numItems = items.reduce((acc, item) => {
     if (item.parentItemIndex === null) {
