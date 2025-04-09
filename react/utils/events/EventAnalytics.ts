@@ -191,6 +191,8 @@ class EventAnalytics {
           body,
         })
 
+        console.info({ analyticsResponse: await response.json() })
+
         if (!response.ok) {
           // If the request fails, re-add the events back to the buffer
           this.retries += 1

@@ -20,7 +20,7 @@ import Notice from './components/Notice'
 import './styles.css'
 import { getCookie } from './utils/functions'
 import { gaMeasurementId } from './utils'
-import { isMobileDevice, pushPayEvent } from './utils/events'
+import { getCustomerItems, isMobileDevice, pushPayEvent } from './utils/events'
 import GenericSuccess from './GenericSuccess'
 
 interface OrderGroupData {
@@ -118,6 +118,8 @@ const OrderPlaced: FC = () => {
         (total) => total.id === 'Shipping'
       )?.value ?? 0
 
+    const items = getCustomerItems()
+
     const purchaseData = {
       event: 'purchase',
       value: data?.orderGroup?.orders[0]?.value
@@ -126,7 +128,8 @@ const OrderPlaced: FC = () => {
       transaction_id: orderNumber || 'UNKNOWN_ORDER_ID',
       shipping: shippingFee ? Number(shippingFee) / 100 : 0,
       event_description: 'Bash Web Purchase',
-      is_heaedless_checkout: document.cookie
+      items,
+      is_headless_checkout: document.cookie
         .includes('bash_checkout_beta=true')
         .toString(),
       is_bash_pay: 'true',
@@ -139,7 +142,7 @@ const OrderPlaced: FC = () => {
   }
 
   useEffect(() => {
-    if (data?.orderGroup?.orders[0]) {
+    if (data?.orderGroup?.orders[0]?.value) {
       if (typeof window.gtag !== 'undefined') {
         trackWebPurchase()
       } else {

@@ -61,7 +61,7 @@ const getUserId = (
  * @returns array of items for Google ecommerce events
  */
 
-const getCustomerItems = () => {
+export const getCustomerItems = () => {
   const customerItems =
     sessionStorage.getItem('ga_items') ?? getCookieValue('ga_data')
   if (!customerItems) return []
@@ -208,7 +208,12 @@ export const pushPayEvent = (
           return acc
         }, {}),
       },
+      is_bash_pay: 'true',
+      is_webview: isApp,
+      ...(isHeadlessCheckout && { is_headless_checkout: 'true' }),
     }
+
+    console.info({ eventForAnalytics })
 
     analytics.trackEvent(eventForAnalytics)
 
