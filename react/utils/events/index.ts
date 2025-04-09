@@ -135,11 +135,8 @@ export const pushPayEvent = (
   if (!eventData) return
 
   const isMobile = isMobileDevice()
-
   const analytics = new EventAnalytics(3000, 3, account)
-
   const isApp = document?.cookie.includes('is_app=true')
-  const isBashPay = getCookieValue('bashpaybeta') === 'true'
   const isHeadlessCheckout = document?.cookie.includes(
     'bash_checkout_beta=true'
   )
@@ -150,7 +147,7 @@ export const pushPayEvent = (
     eventLabel: eventData.event_label || 'Pay_Event',
     eventDescription: eventData.event_description || 'Pay Event',
     event_params: {
-      is_bash_pay: isBashPay ? 'true' : 'false',
+      is_bash_pay: 'true',
       is_webview: isApp,
       is_headless_checkout: isHeadlessCheckout ? 'true' : undefined,
     },
@@ -181,7 +178,7 @@ export const pushPayEvent = (
         items,
         user_id: getUserId()?.sub ?? undefined,
       },
-      ...(isBashPay ? { is_bash_pay: 'true' } : {}),
+      is_bash_pay: 'true',
       ...(isHeadlessCheckout ? { is_headless_checkout: 'true' } : {}),
     }
   } else {
@@ -215,7 +212,7 @@ export const pushPayEvent = (
 
   transformedEventData.event_params = {
     ...(transformedEventData.event_params as object),
-    is_bash_pay: isBashPay,
+    is_bash_pay: 'true',
     is_webview: isApp,
     is_headless_checkout: isHeadlessCheckout ? 'true' : undefined,
   }
