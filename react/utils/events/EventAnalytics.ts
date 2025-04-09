@@ -57,7 +57,7 @@ class EventAnalytics {
   }
 
   private getAppAnalyticsCookieData() {
-    if (typeof document === 'undefined') {
+    if (typeof document === 'undefined' || !this.isApp) {
       return {}
     }
 
