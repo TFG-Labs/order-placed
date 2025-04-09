@@ -1,7 +1,7 @@
 {
   "vendor": "thefoschini",
   "name": "order-placed",
-  "version": "2.15.91",
+  "version": "2.15.92",
   "title": "Order Placed",
   "description": "",
   "registries": ["smartcheckout"],
