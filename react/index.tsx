@@ -65,14 +65,21 @@ const OrderPlaced: FC = () => {
 
       const isMobile = isMobileDevice()
       const webPlatform = isMobile ? 'Mobi' : 'Web'
+
+      const userProperties = {
+        platform_type: document.cookie.includes('is_app=true')
+          ? 'App'
+          : webPlatform,
+      }
+
+      if (document.cookie.includes('bash_checkout_beta=true')) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ;(userProperties as any).is_headless_checkout = true
+      }
+
       window.gtag('js', new Date())
       window.gtag('config', gaMeasurementId, {
-        debug_mode: true,
-        user_properties: {
-          platform_type: document.cookie.includes('is_app=true')
-            ? 'App'
-            : webPlatform,
-        },
+        user_properties: userProperties,
       })
     }
 
