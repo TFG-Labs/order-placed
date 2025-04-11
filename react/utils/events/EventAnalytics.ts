@@ -57,7 +57,7 @@ class EventAnalytics {
   }
 
   private getAppAnalyticsCookieData() {
-    if (typeof document === 'undefined') {
+    if (typeof document === 'undefined' || !this.isApp) {
       return {}
     }
 
@@ -88,6 +88,9 @@ class EventAnalytics {
     }
 
     const isBashPay = document?.cookie.includes('bashpaybeta=true')
+    const isHeadlessCheckout = document?.cookie.includes(
+      'bash_checkout_beta=true'
+    )
     const isMobile = isMobileDevice()
     const platform = isMobile ? 'Mobi' : 'Web'
 
@@ -96,7 +99,10 @@ class EventAnalytics {
         platform,
         clientId: this.clientId,
         sessionId: this.sessionId,
-        feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
+        feature_flag_parameters: [
+          isBashPay ? 'is_bash_pay' : '',
+          isHeadlessCheckout ? 'is_headless_checkout' : '',
+        ],
       })
 
     if (typeof window.gtag !== 'function') {
@@ -133,7 +139,10 @@ class EventAnalytics {
       platform,
       clientId: this.clientId,
       sessionId: this.sessionId,
-      feature_flag_parameters: [isBashPay ? 'is_bash_pay' : ''],
+      feature_flag_parameters: [
+        isBashPay ? 'is_bash_pay' : '',
+        isHeadlessCheckout ? 'is_headless_checkout' : '',
+      ],
     }
   }
 
@@ -147,7 +156,10 @@ class EventAnalytics {
 
     const cookieData = this.getAppAnalyticsCookieData()
     const webData = await this.getWebTrackingConfig()
-    const isFacebook = this.isApp && getCookieValue(`swv`) === 'true' && eventsToSend.some(event => event.name === 'purchase')
+    const isFacebook =
+      this.isApp &&
+      getCookieValue(`swv`) === 'true' &&
+      eventsToSend.some((event) => event.name === 'purchase')
 
     const body = JSON.stringify({
       ...(isFacebook ? { fbEvents: true } : {}),
@@ -172,7 +184,6 @@ class EventAnalytics {
         const headers: HeadersInit = {
           'Content-Type': 'application/json',
         }
-
 
         const response = await fetch(this.endpoint, {
           method: 'POST',
