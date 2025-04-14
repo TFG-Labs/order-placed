@@ -94,15 +94,16 @@ class EventAnalytics {
     const isMobile = isMobileDevice()
     const platform = isMobile ? 'Mobi' : 'Web'
 
+    const featureFlags = []
+    if (isBashPay) featureFlags.push('is_bash_pay')
+    if (isHeadlessCheckout) featureFlags.push('is_headless_checkout')
+
     if (this.clientId && this.sessionId)
       return Promise.resolve({
         platform,
         clientId: this.clientId,
         sessionId: this.sessionId,
-        feature_flag_parameters: [
-          isBashPay ? 'is_bash_pay' : '',
-          isHeadlessCheckout ? 'is_headless_checkout' : '',
-        ],
+        feature_flag_parameters: featureFlags,
       })
 
     if (typeof window.gtag !== 'function') {
@@ -139,10 +140,7 @@ class EventAnalytics {
       platform,
       clientId: this.clientId,
       sessionId: this.sessionId,
-      feature_flag_parameters: [
-        isBashPay ? 'is_bash_pay' : '',
-        isHeadlessCheckout ? 'is_headless_checkout' : '',
-      ],
+      feature_flag_parameters: featureFlags,
     }
   }
 
