@@ -88,9 +88,10 @@ class EventAnalytics {
     }
 
     const isBashPay = document?.cookie.includes('bashpaybeta=true')
-    const isHeadlessCheckout = document?.cookie.includes(
-      'bash_checkout_beta=true'
-    )
+    const isHeadlessCheckout =
+      document?.cookie.includes('bash_checkout_beta=true') &&
+      !document?.cookie.includes('is_app=true')
+
     const isMobile = isMobileDevice()
     const platform = isMobile ? 'Mobi' : 'Web'
 
