@@ -5498,9 +5498,9 @@ test-exclude@^5.2.3:
   version "1.9.15"
   resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-details@1.9.15/public/@types/thefoschini.order-details#69e4de12e6248a60353776356ffc860bbdbc8c8c"
 
-"thefoschini.order-placed@http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.98/public/@types/thefoschini.order-placed":
-  version "2.15.98"
-  resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.98/public/@types/thefoschini.order-placed#28ec71cab26fb9a399efcf709eb9605ef999ef05"
+"thefoschini.order-placed@http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.99/public/@types/thefoschini.order-placed":
+  version "2.15.99"
+  resolved "http://thefoschini.vtexassets.com/_v/public/typings/v1/thefoschini.order-placed@2.15.99/public/@types/thefoschini.order-placed#df6a4b9cd9f356494cc6a3f0592d067c702e848e"
 
 throat@^4.0.0:
   version "4.1.0"
