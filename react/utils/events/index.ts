@@ -137,9 +137,8 @@ export const pushPayEvent = (
   const isMobile = isMobileDevice()
   const analytics = new EventAnalytics(3000, 3, account)
   const isApp = document?.cookie.includes('is_app=true')
-  const isHeadlessCheckout = document?.cookie.includes(
-    'bash_checkout_beta=true'
-  )
+  const isHeadlessCheckout =
+    !isApp && document?.cookie.includes('bash_checkout_beta=true')
 
   let transformedEventData: { [key: string]: string | object } = {
     eventCategory: 'Payments',
